@@ -1,0 +1,24 @@
+﻿.api-call .data-sample {
+    white-space:pre-wrap;
+    margin-left: 30px;
+}
+
+.api-call {
+    margin: 20px;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.api-call .title {
+    border-bottom: 1px solid black;
+    background-color: #949494;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.api-call .body {
+    background-color: #d3d3d3;
+    padding: 5px;
+}

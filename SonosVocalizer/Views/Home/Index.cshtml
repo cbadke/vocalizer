@@ -1,0 +1,68 @@
+﻿<div id="body" class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>You look like someone who has something to say!</h1>
+            <span>This API is just to place to find your voice in DevFacto!</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 api-call">
+            <div class="title">voices</div>
+            <div class="body">
+
+                <div><b>url: </b><code>/api/voices</code></div>
+                <div><b>action: </b><code>GET</code></div>
+                <div>
+                    <b>results: </b>
+                    <div class="data-sample">[
+    {
+        "name": "Microsoft David Desktop",
+        "age": 30,
+        "culture": "en-US",
+        "gender": 1
+    },
+    {
+        "name": "Microsoft Hazel Desktop",
+        "age": 30,
+        "culture": "en-GB",
+        "gender": 2
+    },
+    {
+        "name": "Microsoft Zira Desktop",
+        "age": 30,
+        "culture": "en-US",
+        "gender": 2
+    }
+]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 api-call">
+            <div class="title">vocalize</div>
+            <div class="body">
+
+                <div><b>url: </b><code>/api/vocalize</code></div>
+                <div><b>action: </b><code>POST</code></div>
+                <div><b>data (default voice): </b>
+                    <div class="data-sample">{
+    "phrase" : "Look Dave, I can see you're really upset about this. I honestly think you ought to sit down calmly, take a stress pill, and think things over."
+} </div>
+                </div>
+                <div><b>data: </b>
+                    <div class="data-sample">{
+    "phrase" : "A spoon full of sugar helps the medicine go down.",
+    "voice" : "Microsoft Hazel Desktop"
+} </div>
+                </div>
+                <div><b>results: </b>
+                    <div class="data-sample">{
+    "result": true,
+    "phrase" : "Look Dave, I can see you're really upset about this. I honestly think you ought to sit down calmly, take a stress pill, and think things over."
+} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
