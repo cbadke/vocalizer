@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="vocalize">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -12,9 +12,11 @@
         <div class="content-wrapper">
         </div>
     </header>
+
     @RenderBody()
 
     @Scripts.Render("~/Scripts/bs")
+    @Scripts.Render("~/Scripts/ang")
     @RenderSection("scripts", required: false)
 </body>
 </html>

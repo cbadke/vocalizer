@@ -2,19 +2,44 @@
     <div class="row">
         <div class="col-lg-12">
             <h1>You look like someone who has something to say!</h1>
-            <span>This API is just to place to find your voice in DevFacto!</span>
+            <span>This API is just to place to find your voice in DevFacto! Send a message to the API and hear your words broadcast for all to hear!</span>
         </div>
     </div>
+    <div class="row" ng-controller="home">
+        <div class="container">
+            <form ng-submit="execute()">
+                <h3>Try it out (locally):</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-med-6 col-sm-8 col-xs-12">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="I have something to say." ng-model="phrase" />
+                            <span class="input-group-btn">
+                                <input class="btn btn-primary" type="submit" value="Say It!"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-med-6 col-sm-8 col-xs-12">
+                        <select class="form-control" ng-model="voice" ng-options="v for v in voices"></select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <audio controls autoplay src="{{audioStream}}" />
+    </div>
     <div class="row">
-        <div class="col-lg-12 api-call">
-            <div class="title">voices</div>
-            <div class="body">
-
-                <div><b>url: </b><code>/api/voices</code></div>
-                <div><b>action: </b><code>GET</code></div>
-                <div>
-                    <b>results: </b>
-                    <div class="data-sample">[
+        <div class="col-lg-12">
+            <div class="api-call">
+                <a name="voices"></a>
+                <div class="title">voices</div>
+                <div class="body">
+                    <div><b>description: </b> Get a list of all voices the can be provided by the server.</div>
+                    <div><b>url: </b><code>/api/voices</code></div>
+                    <div><b>action: </b><code>GET</code></div>
+                    <div>
+                        <b>results: </b>
+                        <div class="data-sample">[
     {
         "name": "Microsoft David Desktop",
         "age": 30,
@@ -34,35 +59,70 @@
         "gender": 2
     }
 ]</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12 api-call">
-            <div class="title">vocalize</div>
-            <div class="body">
-
-                <div><b>url: </b><code>/api/vocalize</code></div>
-                <div><b>action: </b><code>POST</code></div>
-                <div><b>data (default voice): </b>
-                    <div class="data-sample">{
+        <div class="col-lg-12">
+            <div class="api-call">
+                <a name="vocalize"></a>
+                <div class="title">vocalize</div>
+                <div class="body">
+                    <div><b>description: </b> Broadcast a phrase on the office sound system.</div>
+                    <div><b>url: </b><code>/api/vocalize</code></div>
+                    <div><b>action: </b><code>POST</code></div>
+                    <div><b>data (default voice): </b>
+                        <div class="data-sample">{
     "phrase" : "Look Dave, I can see you're really upset about this. I honestly think you ought to sit down calmly, take a stress pill, and think things over."
 } </div>
-                </div>
-                <div><b>data: </b>
+                    </div>
+                    <div><b>data (specific voice): </b>
                     <div class="data-sample">{
     "phrase" : "A spoon full of sugar helps the medicine go down.",
     "voice" : "Microsoft Hazel Desktop"
 } </div>
                 </div>
-                <div><b>results: </b>
-                    <div class="data-sample">{
+                    <div><b>results: </b>
+                        <div class="data-sample">{
     "result": true,
     "phrase" : "Look Dave, I can see you're really upset about this. I honestly think you ought to sit down calmly, take a stress pill, and think things over."
 } </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="api-call">
+                <a name="testvocalize"></a>
+                <div class="title">testvocalize</div>
+                <div class="body">
+                    <div><b>description: </b> Generate a locally retrievable text-to-speech result.</div>
+                    <div><b>url: </b><code>/api/testvocalize</code></div>
+                    <div><b>action: </b><code>POST</code></div>
+                    <div><b>data: </b><span> See <a href="#vocalize">vocalize</a>.</span></div>
+                    <div><b>results: </b>
+                        <div class="data-sample">{
+    "id" : "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"
+}</div>
+                </div>
+                </div>
+                <div class="body">
+                    <div><b>description: </b> Retrieve a generated text-to-speech result.</div>
+                    <div><b>url: </b><code>/api/testvocalize/:id</code></div>
+                    <div><b>action: </b><code>GET</code></div>
+                    <div><b>id: </b><span> A GUID returned by posting a phrase to the testvocalize endpoint.</span></div>
+                    <div><b>results: </b><span> WAV file generated from previous POST.</span></div>
+                    <div><b>note: </b><span> WAV data is only buffered in the server for a single fetch. You may GET a generated id once and then the data will no longer be available on the server.</span></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/app.js"></script>
+}

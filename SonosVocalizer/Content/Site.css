@@ -1,11 +1,8 @@
-﻿.api-call .data-sample {
-    white-space:pre-wrap;
-    margin-left: 30px;
+﻿.row {
+    margin-bottom: 10px;
 }
 
 .api-call {
-    margin: 20px;
-    padding: 0;
     border: 1px solid black;
 }
 
@@ -21,4 +18,15 @@
 .api-call .body {
     background-color: #d3d3d3;
     padding: 5px;
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.api-call .data-sample {
+    white-space:pre-wrap;
+    margin-left: 30px;
+}
+
+audio {
+    display:none;
 }

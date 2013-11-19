@@ -13,11 +13,11 @@ namespace SonosVocalizer.Controllers
     {
         public dynamic Post(dynamic req)
         {
-            string phrase = null;
-            string voice = null;
             try 
             {
-                phrase = req["phrase"].Value;
+                string voice = null;
+
+                string phrase = req["phrase"].Value;
 
                 try { voice = req["voice"].Value; } catch { }
 
@@ -54,11 +54,6 @@ namespace SonosVocalizer.Controllers
                 return new { result = false };
             }
 
-        }
-
-        void SpeechGenerated(object sender, SpeakCompletedEventArgs e)
-        {
-            return;
         }
     }
 }

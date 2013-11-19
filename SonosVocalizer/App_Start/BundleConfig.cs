@@ -14,6 +14,9 @@ namespace SonosVocalizer
             bundles.Add(new ScriptBundle("~/Scripts/bs")
                 .Include("~/Scripts/jquery/jquery-1.10.2.js")
                 .Include("~/Scripts/bootstrap/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/ang")
+                .Include("~/Scripts/angular/angular.js"));
         }
     }
 }
