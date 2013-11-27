@@ -46,6 +46,9 @@ namespace SonosVocalizer.Controllers
                 t.Start();
                 t.Join();
 
+                var url = config.AppSettings.Settings["commandURL"].Value;
+                PostToUrl(url);
+
                 return new { result = true, phrase = phrase };
             }
             catch
@@ -53,6 +56,20 @@ namespace SonosVocalizer.Controllers
                 return new { result = false };
             }
 
+        }
+
+        private void PostToUrl(string commandURL)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(commandURL);
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            request.ContentLength = 0;
+
+            var webResponse = request.GetResponse();
+            var webStream = webResponse.GetResponseStream();
+            var responseReader = new StreamReader(webStream);
+            responseReader.ReadToEnd();
+            responseReader.Close();
         }
     }
 }
