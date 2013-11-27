@@ -11,6 +11,7 @@ namespace SonosVocalizer.Controllers
 {
     public class VocalizeController : ApiController
     {
+        System.Configuration.Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
         public dynamic Post(dynamic req)
         {
             try 
@@ -22,11 +23,9 @@ namespace SonosVocalizer.Controllers
                 try { voice = req["voice"].Value; } catch { }
 
                 var id = Guid.NewGuid();
-                var waveDir = Path.Combine(
-                                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                                    "SonosVocalizer");
+                var waveDir = config.AppSettings.Settings["wavDirectory"].Value;
                 var waveFile = Path.Combine(waveDir,
-                                    id + ".wav");
+                                    "announcement.wav");
 
                 if (!Directory.Exists(waveDir))
                     Directory.CreateDirectory(waveDir);
