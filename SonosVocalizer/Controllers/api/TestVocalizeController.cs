@@ -7,20 +7,18 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Speech.Synthesis;
 using System.Web.Http;
+using System.Runtime.Caching;
 
 namespace SonosVocalizer.Controllers.api
 {
     public class TestVocalizeController : ApiController
     {
-        static Dictionary<Guid, Stream> streams = new Dictionary<Guid, Stream>();
-
         public HttpResponseMessage Get(Guid id)
         {
-            if (streams.ContainsKey(id))
+            var cache = MemoryCache.Default;
+            var stream = cache[id.ToString()] as Stream;
+            if (stream != null)
             {
-                var stream = streams[id];
-                streams.Remove(id);
-
                 var resp = new HttpResponseMessage(HttpStatusCode.OK);
                 resp.Content = new StreamContent(stream);
 
@@ -67,7 +65,8 @@ namespace SonosVocalizer.Controllers.api
 
                 stream.Position = 0;
 
-                streams.Add(id, stream);
+                var cache = MemoryCache.Default;
+                cache.Add(id.ToString(), stream, new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromMinutes(2) });
 
                 return new { id = id };
             }
